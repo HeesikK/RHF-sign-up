@@ -1,9 +1,9 @@
 import logo from "./logo.svg";
 import "./App.css";
-import SingUp from "./pages/sign-up";
+import SingIn from "./pages/sign-in";
 
 function App() {
-  return <SingUp />;
+  return <SingIn />;
 }
 
 export default App;
