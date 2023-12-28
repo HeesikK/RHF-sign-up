@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
 
-const SingIn = () => {
+const SignIn = () => {
   // useForm 훅에 register 메서드를 통해 input 연결
   const {
     register,
@@ -48,4 +48,4 @@ const SingIn = () => {
   );
 };
 
-export default SingIn;
+export default SignIn;
