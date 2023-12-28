@@ -3,7 +3,9 @@ import styled from "styled-components";
 
 const SignUp = () => {
   {
-    /* 아이디, 비밀번호, 연락처, 생년월일, 하고싶은말 */
+    /* 
+    아이디, 비밀번호, 연락처, 생년월일, 하고싶은말 
+    */
   }
   const {
     register,
@@ -19,6 +21,8 @@ const SignUp = () => {
         alert(JSON.stringify(data));
       })}
     >
+      {/* 이메일 */}
+      {/* aria-invalid 적용이 왜 안되는걸까.. */}
       <S.InputBox>
         <label htmlFor="email">이메일</label>
         <S.Input
@@ -26,15 +30,17 @@ const SignUp = () => {
           type="email"
           placeholder="이메일을 입력해주세요."
           {...register("email", {
-            required: "이메일은 필수 입력입니다.",
+            required: "이메일은 필수입니다.",
             pattern: {
               value: /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i,
               message: "이메일 형식에 맞지 않습니다.",
             },
           })}
+          aria-invalid={errors.email ? "true" : "false"}
         />
         {errors.email && <S.ErrorBox>{errors.email.message}</S.ErrorBox>}
       </S.InputBox>
+      {/* 비밀번호 */}
       <S.InputBox>
         <label htmlFor="password">비밀번호</label>
         <S.Input
@@ -42,7 +48,7 @@ const SignUp = () => {
           type="password"
           placeholder="비밀번호를 입력해주세요."
           {...register("password", {
-            required: "비밀번호는 필수 입력입니다.",
+            required: "비밀번호는 필수입니다.",
             pattern: {
               value: /(?=.*?[a-z])(?=.*?[A-Z])/,
               message: "비밀번호는 대소문자 특수문자가 포함되어야 합니다.",
@@ -55,17 +61,47 @@ const SignUp = () => {
         />
         {errors.password && <S.ErrorBox>{errors.password.message}</S.ErrorBox>}
       </S.InputBox>
+      {/* 휴대폰 번호 */}
       <S.InputBox>
         <label htmlFor="number">휴대폰 번호</label>
         <S.Input id="number" type="text" placeholder="연락처를 입력해주세요." {...register("number")} />
       </S.InputBox>
+      {/* 생년월일 */}
       <S.InputBox>
         <label htmlFor="birthday">생년월일</label>
-        <S.Input id="birthday" type="text" placeholder="생년월일을 입력해주세요." {...register("birthday")} />
+        <S.Input
+          id="birthday"
+          type="date"
+          placeholder="생년월일을 입력해주세요."
+          {...register("birthday", {
+            required: "생년월일은 필수입니다",
+          })}
+        />
+        {errors.birthday && <S.ErrorBox>{errors.birthday.message}</S.ErrorBox>}
       </S.InputBox>
-      <button type="submit" disabled={isSubmitting}>
+      {/* 하고싶은말 */}
+      <S.InputBox>
+        <label htmlFor="text">하고싶은말</label>
+        <S.TextArea
+          id="text"
+          {...register("text", {
+            required: "하고싶은말은 필수입니다",
+            minLength: {
+              value: 100,
+              message: "100자 이상으로 작성해주세요.",
+            },
+            maxLength: {
+              value: 300,
+              message: "300자 이하로 작성해주세요.",
+            },
+          })}
+        />
+        {errors.text && <S.ErrorBox>{errors.text.message}</S.ErrorBox>}
+      </S.InputBox>
+      {/* isSubmitting 메서드를 사용해서 중복 제출 방지 */}
+      <S.Button type="submit" disabled={isSubmitting}>
         회원가입
-      </button>
+      </S.Button>
     </form>
   );
 };
@@ -86,7 +122,16 @@ const Input = styled.input`
   padding: 0px 10px;
 `;
 
-const Button = styled.button``;
+const Button = styled.button`
+  width: 300px;
+  height: 40px;
+  margin-top: 10px;
+`;
+
+const TextArea = styled.textarea`
+  width: 300px;
+  height: 80px;
+`;
 
 const ErrorBox = styled.div`
   font-size: 12px;
@@ -97,5 +142,6 @@ const S = {
   InputBox,
   Input,
   Button,
+  TextArea,
   ErrorBox,
 };
