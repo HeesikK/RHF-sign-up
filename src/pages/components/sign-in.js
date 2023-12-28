@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { schema } from "../../schema/schema";
+import { signIn_schema } from "../../schema/schema";
 
 const SignIn = () => {
   // useForm 훅에 register 메서드를 통해 input 연결
@@ -8,7 +8,7 @@ const SignIn = () => {
     register,
     handleSubmit,
     formState: { isSubmitting, errors },
-  } = useForm({ resolver: yupResolver(schema) });
+  } = useForm({ resolver: yupResolver(signIn_schema) });
 
   return (
     <form noValidate onSubmit={handleSubmit((data) => alert(JSON.stringify(data)))}>
