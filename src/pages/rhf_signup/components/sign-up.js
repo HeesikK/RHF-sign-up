@@ -4,7 +4,7 @@ import CustomInput from "../../../components/input";
 import CustomTextArea from "../../../components/textarea";
 import { useNavigate, useSearchParams } from "react-router-dom";
 
-const SignUp = ({ step1, step2, step3, step }) => {
+const SignUp = ({ step }) => {
   const {
     register,
     handleSubmit,
@@ -13,14 +13,12 @@ const SignUp = ({ step1, step2, step3, step }) => {
 
   const navigate = useNavigate();
   const [keyword] = useSearchParams();
-  console.log("param값은?", keyword.get("step"));
 
   const onSubmitForm = (data) => {
     console.log("hi");
     keyword.get("step") === null ? navigate(`/sign-up?step=2`) : navigate(`/sign-up?step=3`);
     alert(JSON.stringify(data));
   };
-  console.log("현재 스탭값이 무엇일까요?", step);
 
   return (
     <form noValidate onSubmit={handleSubmit(onSubmitForm)}>

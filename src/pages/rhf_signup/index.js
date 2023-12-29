@@ -1,30 +1,12 @@
 import styled from "styled-components";
 import SignUp from "./components/sign-up";
 import { useSearchParams } from "react-router-dom";
+import { step1, step2, step3 } from "../../consts/step";
 
 const SignUpFormPage = () => {
-  const step1 = [
-    {
-      label: "이메일",
-      id: "email",
-      type: "email",
-      placeholder: "이메일을 입력해주세요.",
-    },
-    { label: "비밀번호", id: "password", type: "password", placeholder: "비밀번호를 입력해주세요." },
-  ];
-  const step2 = [
-    {
-      label: "휴대폰번호",
-      id: "phone",
-      type: "text",
-      placeholder: "휴대폰번호를 입력해주세요.",
-    },
-    { label: "생년월일", id: "birthday", type: "date", placeholder: "생년월일을 입력해주세요." },
-  ];
-  const step3 = [{ label: "하고싶은말", id: "text", placeholder: "하고싶은말을 입력해주세요." }];
   const [keyword] = useSearchParams();
   const step = keyword.get("step") == null ? step1 : keyword.get("step") == 2 ? step2 : step3;
-  console.log("현재 스탭은?", step);
+
   return (
     <Wrapper>
       <div>
