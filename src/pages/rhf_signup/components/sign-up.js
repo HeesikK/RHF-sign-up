@@ -1,10 +1,10 @@
 import { useForm } from "react-hook-form";
 import styled from "styled-components";
-import CustomInput from "../../../components/input";
-import CustomTextArea from "../../../components/textarea";
-import { useNavigate, useSearchParams } from "react-router-dom";
 
-const SignUp = ({ step }) => {
+import { useNavigate } from "react-router-dom";
+import { CustomInput } from "../../../components/input";
+
+const SignUp = ({ step, stepNumber }) => {
   const {
     register,
     handleSubmit,
@@ -12,21 +12,19 @@ const SignUp = ({ step }) => {
   } = useForm({ mode: "onChange" });
 
   const navigate = useNavigate();
-  const [keyword] = useSearchParams();
 
   const onSubmitForm = (data) => {
-    console.log("hi");
-    keyword.get("step") === null ? navigate(`/sign-up?step=2`) : navigate(`/sign-up?step=3`);
+    stepNumber === null ? navigate(`/sign-up?step=2`) : navigate(`/sign-up?step=3`);
     alert(JSON.stringify(data));
   };
 
+  console.log(stepNumber);
+
   return (
     <form noValidate onSubmit={handleSubmit(onSubmitForm)}>
-      {/* 이메일&비밀번호 */}
       {step.map((el) => (
         <CustomInput label={el.label} id={el.id} type={el.type} placeholder={el.placeholder} register={register} errors={errors} />
       ))}
-      {/* isSubmitting 메서드를 사용해서 중복 제출 방지 */}
       <S.Button>다음</S.Button>
     </form>
   );

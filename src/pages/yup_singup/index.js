@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import SignUp from "./components/sign-up";
 import { useSearchParams } from "react-router-dom";
 import { signUpStep } from "../../consts/step";
+import SignUp_Schema from "./components/sign-up-schema";
 
 const SignUpFormPage = () => {
   const [keyword] = useSearchParams();
@@ -11,8 +11,8 @@ const SignUpFormPage = () => {
   return (
     <Wrapper>
       <div>
-        <h2>회원가입(yup 사용x)</h2>
-        <SignUp step={step} stepNumber={stepNumber} />
+        <h2>회원가입(yup 사용o)</h2>
+        <SignUp_Schema step={step} stepNumber={stepNumber} />
       </div>
     </Wrapper>
   );

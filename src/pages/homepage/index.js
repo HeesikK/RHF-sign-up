@@ -6,7 +6,16 @@ const HomePage = () => {
   const goToSignUpPage = () => {
     navigate("/sign-up");
   };
-  return <button onClick={goToSignUpPage}>회원가입</button>;
+
+  const goToSignUpSchemaPage = () => {
+    navigate("/sign-up-schema");
+  };
+  return (
+    <>
+      <button onClick={goToSignUpPage}>회원가입</button>
+      <button onClick={goToSignUpSchemaPage}>회원가입</button>
+    </>
+  );
 };
 
 export default HomePage;
