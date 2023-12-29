@@ -1,18 +1,27 @@
-import SignIn from "./components/sign-in";
-import SignUp from "./components/sign-up";
-import SignUpSchema from "./components/sign-up-schema";
+import styled from "styled-components";
+import SignUp from "./rhf_signup/components/sign-up";
+import SignUpSchema from "./yup_singup/components/sign-up-schema";
 
 const HomePage = () => {
   return (
-    <>
-      <h2>로그인(yup 사용)</h2>
-      <SignIn />
-      <h2>회원가입(yup 사용x)</h2>
-      <SignUp />
-      <h2>회원가입(yup 사용)</h2>
-      <SignUpSchema />
-    </>
+    <Wrapper>
+      <div>
+        <h2>회원가입(yup 사용x)</h2>
+        <SignUp />
+      </div>
+      {/* <div>
+        <h2>회원가입(yup 사용)</h2>
+        <SignUpSchema />
+      </div> */}
+    </Wrapper>
   );
 };
 
 export default HomePage;
+
+const Wrapper = styled.div`
+  display: flex;
+  & > div {
+    margin: 100px;
+  }
+`;

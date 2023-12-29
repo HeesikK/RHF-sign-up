@@ -1,19 +1,14 @@
 import { useForm } from "react-hook-form";
 import styled from "styled-components";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { signUp_schema } from "../../schema/schema";
+import { schema } from "../../../consts/schema";
 
 const SignUpSchema = () => {
-  {
-    /* 
-    아이디, 비밀번호, 연락처, 생년월일, 하고싶은말 
-    */
-  }
   const {
     register,
     handleSubmit,
     formState: { isSubmitting, errors },
-  } = useForm({ resolver: yupResolver(signUp_schema) });
+  } = useForm({ resolver: yupResolver(schema) });
 
   return (
     <form
