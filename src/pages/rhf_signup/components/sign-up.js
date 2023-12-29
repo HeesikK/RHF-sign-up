@@ -2,13 +2,16 @@ import { useForm } from "react-hook-form";
 import styled from "styled-components";
 import CustomInput from "../../../components/input";
 import CustomTextArea from "../../../components/textarea";
+import { useNavigate } from "react-router-dom";
 
-const SignUp = () => {
+const SignUp = ({ step1, step2, step3 }) => {
   const {
     register,
     handleSubmit,
     formState: { isSubmitting, errors },
   } = useForm();
+
+  // const navigate = useNavigate();
 
   return (
     <form
@@ -18,16 +21,18 @@ const SignUp = () => {
         alert(JSON.stringify(data));
       })}
     >
-      {/* 이메일 */}
-      <CustomInput label={"이메일"} id={"email"} type={"email"} placeholder={"이메일을 입력해주세요."} register={register} errors={errors} />
-      {/* 비밀번호 */}
-      <CustomInput label={"비밀번호"} id={"password"} type={"password"} placeholder={"비밀번호를 입력해주세요."} register={register} errors={errors} />
-      {/* 휴대폰 번호 */}
-      <CustomInput label={"휴대폰번호"} id={"phone"} type={"text"} placeholder={"휴대폰번호를 입력해주세요."} register={register} errors={errors} />
-      {/* 생년월일 */}
-      <CustomInput label={"생년월일"} id={"birthday"} type={"date"} register={register} errors={errors} />
+      {/* 이메일&비밀번호 */}
+      {step1.map((el) => (
+        <CustomInput label={el.label} id={el.id} type={el.type} placeholder={el.placeholder} register={register} errors={errors} />
+      ))}
+      {/* 휴대폰번호&생년월일 */}
+      {step2.map((el) => (
+        <CustomInput label={el.label} id={el.id} type={el.type} placeholder={el.placeholder} register={register} errors={errors} />
+      ))}
       {/* 하고싶은말 */}
-      <CustomTextArea label={"하고싶은말"} id={"text"} placeholder={"하고싶은말을 입력해주세요."} register={register} errors={errors} />
+      {step3.map((el) => (
+        <CustomTextArea label={el.label} id={el.id} placeholder={el.placeholder} register={register} errors={errors} />
+      ))}
       {/* isSubmitting 메서드를 사용해서 중복 제출 방지 */}
       <S.Button type="submit" disabled={isSubmitting}>
         회원가입
