@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import SignUp from "./components/sign-up";
+import { useSearchParams } from "react-router-dom";
 
 const SignUpFormPage = () => {
   const step1 = [
@@ -21,11 +22,14 @@ const SignUpFormPage = () => {
     { label: "생년월일", id: "birthday", type: "date", placeholder: "생년월일을 입력해주세요." },
   ];
   const step3 = [{ label: "하고싶은말", id: "text", placeholder: "하고싶은말을 입력해주세요." }];
+  const [keyword] = useSearchParams();
+  const step = keyword.get("step") == null ? step1 : keyword.get("step") == 2 ? step2 : step3;
+  console.log("현재 스탭은?", step);
   return (
     <Wrapper>
       <div>
         <h2>회원가입(yup 사용x)</h2>
-        <SignUp step1={step1} step2={step2} step3={step3} />
+        <SignUp step1={step1} step2={step2} step3={step3} step={step} />
       </div>
       {/* <div>
         <h2>회원가입(yup 사용)</h2>
