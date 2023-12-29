@@ -9,14 +9,13 @@ const SignUp = ({ step1, step2, step3 }) => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({ mode: "onChange" });
+  } = useForm();
 
   const navigate = useNavigate();
   const [keyword] = useSearchParams();
   console.log("param값은?", keyword.get("step"));
 
   const onSubmitForm = (data) => {
-    console.log("hi");
     keyword.get("step") === null ? navigate(`/sign-up?step=2`) : navigate(`/sign-up?step=3`);
     alert(JSON.stringify(data));
   };
@@ -38,7 +37,7 @@ const SignUp = ({ step1, step2, step3 }) => {
         <CustomTextArea label={el.label} id={el.id} placeholder={el.placeholder} register={register} errors={errors} />
       ))} */}
       {/* isSubmitting 메서드를 사용해서 중복 제출 방지 */}
-      <S.Button>다음</S.Button>
+      <S.Button>{keyword.get("step") === 3 ? "회원가입" : "다음"}</S.Button>
     </form>
   );
 };
