@@ -1,8 +1,7 @@
 import styled from "styled-components";
-import SignUp from "./rhf_signup/components/sign-up";
-import SignUpSchema from "./yup_singup/components/sign-up-schema";
+import SignUp from "./components/sign-up";
 
-const HomePage = () => {
+const SignUpFormPage = () => {
   const step1 = [
     {
       label: "이메일",
@@ -36,7 +35,7 @@ const HomePage = () => {
   );
 };
 
-export default HomePage;
+export default SignUpFormPage;
 
 const Wrapper = styled.div`
   display: flex;
