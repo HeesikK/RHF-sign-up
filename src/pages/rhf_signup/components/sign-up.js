@@ -11,15 +11,23 @@ const SignUp = () => {
     formState: { errors },
   } = useForm({ mode: "onChange" });
   const [searchParams, setSearchParams] = useSearchParams();
-  const step = searchParams.get("step") ?? "1";
+  let step = searchParams.get("step") ?? "1";
+  const numberStep = Number(step);
 
   const onSubmitForm = (data) => {
-    const stepNumber = Number(step) + 1;
-    setSearchParams({ step: stepNumber });
-    alert(JSON.stringify(data));
+    if (numberStep > signUpStep.length) throw new Error("마지막 페이지임");
+    if (numberStep === signUpStep.length) return alert(JSON.stringify(data));
+    let nextStep = numberStep + 1;
+    setSearchParams({ step: nextStep });
+    // navigate(`/sign-up?step=${nextStep}`)
+    // const stepNumber = Number(step) + 1;
+    // setSearchParams({ step: stepNumber });
+    // if (Number(step) > signUpStep.length) throw new Error("마지막 페이지임");
+    // if (Number(step) === signUpStep.length) return alert(JSON.stringify(data));
   };
 
   console.log("step의 값과 타입은?", step, typeof step);
+  console.log(signUpStep.length, typeof signUpStep.length);
 
   return (
     <form noValidate onSubmit={handleSubmit(onSubmitForm)}>
@@ -42,3 +50,6 @@ const Button = styled.button`
 const S = {
   Button,
 };
+
+// 삼항 연산자를 여러개 써서 가독성을 해치지 말고 옵셔널 체이닝을 사용해보자.
+// "??" 연산자를 사용해서 searchParams.get("step")의 값이 없으면 default 값으로 1을 지정
