@@ -8,12 +8,12 @@ const HomePage = () => {
   };
 
   const goToSignUpSchemaPage = () => {
-    navigate("/sign-up-schema");
+    navigate("/yup");
   };
   return (
     <>
-      <button onClick={goToSignUpPage}>회원가입</button>
-      <button onClick={goToSignUpSchemaPage}>회원가입</button>
+      <button onClick={goToSignUpPage}>React Hook Form</button>
+      <button onClick={goToSignUpSchemaPage}>Yup</button>
     </>
   );
 };
