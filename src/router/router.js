@@ -1,7 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import SignUpFormPage from "../pages/rhf_signup";
 import HomePage from "../pages/homepage";
-import SignUpFormPage_Schema from "../pages/yup_singup";
+import SignUpFormPage_Yup from "../pages/yup_singup";
 
 const router = createBrowserRouter([
   {
@@ -14,7 +14,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/yup",
-    element: <SignUpFormPage_Schema />,
+    element: <SignUpFormPage_Yup />,
   },
 ]);
 

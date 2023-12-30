@@ -11,16 +11,6 @@ export const CustomInput = ({ id, label, register, errors, ...inputProps }) => {
   );
 };
 
-export const CustomInput_Schema = ({ id, label, register, errors, ...inputProps }) => {
-  return (
-    <InputBox>
-      <Label htmlFor={id}>{label}</Label>
-      <input id={id} {...inputProps} {...register(id)} />
-      {errors[id] && <ValidateMessage>{errors[id].message}</ValidateMessage>}
-    </InputBox>
-  );
-};
-
 const InputBox = styled.div`
   display: flex;
   flex-direction: column;
